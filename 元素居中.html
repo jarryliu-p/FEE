@@ -24,12 +24,29 @@
         其次就是考虑能不能用vertical-align: middle;
     </li>
     <li>
-        设置tabl-cell的元素，宽度和高度的值设置百分比无效，需要给它的父元素设置display: table; 才生效；table-cell不感知margin，在父元素上设置table-row等属性，也会使其不感知height；设置float或position会对默认布局造成破坏，可以考虑为之增加一个父div定义float等属性；内容溢出时会自动撑开父元素
+        设置tabl-cell的元素，宽度和高度的值设置百分比无效，需要给它的父元素设置display: table;
+        才生效；table-cell不感知margin，在父元素上设置table-row等属性，也会使其不感知height；设置float或position会对默认布局造成破坏，可以考虑为之增加一个父div定义float等属性；内容溢出时会自动撑开父元素
     </li>
     <li>
         然后便是绝对定位，虽然代码多了点，但是胜在适用于不同情况；
     </li>
     <li>
         移动端兼容性允许的情况下能用flex就用flex
+    </li>
+</ul>
+3）水平垂直居中
+<ul>
+    <li>
+        一般情况下，水平垂直居中，我们最常用的就是绝对定位加负边距了，缺点就是需要知道宽高，使用transform倒是可以不需要，但是兼容性不好（ie9+）
+    </li>
+    <li>
+        其次就是绝对居中，绝对定位设置top、left、right、bottom为0，然后margin:auto; 让浏览器自动平分边距以达到水平垂直居中的目的；
+    </li>
+    <li>
+        如果是行内/行内块级/图片这些内容，可以优先考虑line-height和vertical-align 结合使用，font-size: 0 是为了消除近似居中的bug,不要忘了还有text-align
+        ，这个方法代码其实不多，就是理解原理有点困难，想要熟练应对各种情况还需好好研究；
+    </li>
+    <li>
+        移动端兼容性允许的情况下能用flex就用flex。
     </li>
 </ul>
