@@ -14,5 +14,6 @@ new Promise(function(resolve, reject){
 })
 console.log(3)
 
+//ex3
 let {x ,y,...z} = { x:1,y:2,a:3,b:4};
 console.log(JSON.stringify(z));
