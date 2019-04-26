@@ -148,3 +148,31 @@ e()
  * micro-task(微任务)：Promise、MutaionObserver、process.nextTicks
  * promise.Trick() > promise的回调 > setTimeout > setImmediate
  */
+
+/*
+我们知道，async/await 仅仅是生成器的语法糖，所以不要怕，只要把它转换成 Promise 的形式即可。下面这段代码是 async/await 函数的经典形式。
+async function foo() {
+ // await 前面的代码
+ await bar();
+ // await 后面的代码
+}
+
+async function bar() {
+ // do something...
+}
+
+foo();
+复制代码其中 await 前面的代码 是同步的，调用此函数时会直接执行；而 await bar(); 这句可以被转换成 Promise.resolve(bar())；await 后面的代码 则会被放到 Promise 的 then() 方法里。因此上面的代码可以被转换成如下形式，这样是不是就很清晰了？
+function foo() {
+ // await 前面的代码
+ Promise.resolve(bar()).then(() => {
+   // await 后面的代码
+ });
+}
+
+function bar() {
+ // do something...
+}
+
+foo();
+ */
