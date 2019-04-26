@@ -133,7 +133,16 @@ function d() {
     console.log('E');
 }
 
-d();
+//4 3 2 1 undefined
+function e() {
+    new Promise(resolve => {
+        resolve(1);
+        Promise.resolve().then(() => console.log(2));
+        console.log(4);
+    }).then(t => console.log(t));
+    console.log(3);
+}
+e()
 /**
  * macro-task(宏任务)：script(整体代码)、setTimeout、setInterval、I/O、事件、postMessage、 MessageChannel、setImmediate (Node.js)
  * micro-task(微任务)：Promise、MutaionObserver、process.nextTicks
