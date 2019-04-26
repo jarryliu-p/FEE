@@ -166,7 +166,58 @@ function e() {
     }).then(t => console.log(t));
     console.log(3);
 }
-_b()
+
+function f() {
+    const p1 = new Promise((resolve, reject) => {
+        console.log('promise1');
+        resolve();
+    })
+        .then(() => {
+            console.log('then11');
+            new Promise((resolve, reject) => {
+                console.log('promise2');
+                resolve();
+            })
+                .then(() => {
+                    console.log('then21');
+                })
+                .then(() => {
+                    console.log('then23');
+                });
+        })
+        .then(() => {
+            console.log('then12');
+        });
+
+    const p2 = new Promise((resolve, reject) => {
+        console.log('promise3');
+        resolve();
+    }).then(() => {
+        console.log('then31');
+    });
+}
+function g() {
+    const p1 = new Promise((resolve, reject) => {
+        console.log('promise1'); // 1
+        resolve();
+    })
+        .then(() => {
+            console.log('then11'); // 2
+            return new Promise((resolve, reject) => {
+                console.log('promise2'); // 3
+                resolve();
+            })
+                .then(() => {
+                    console.log('then21'); // 4
+                })
+                .then(() => {
+                    console.log('then23'); // 5
+                });
+        })
+        .then(() => {
+            console.log('then12'); //6
+        });
+}
 /**
  * macro-task(宏任务)：script(整体代码)、setTimeout、setInterval、I/O、事件、postMessage、 MessageChannel、setImmediate (Node.js)
  * micro-task(微任务)：Promise、MutaionObserver、process.nextTicks
