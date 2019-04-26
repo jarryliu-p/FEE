@@ -74,6 +74,30 @@ function b() {
     console.log('script end');
 }
 
+function _b() {
+    async function async1() {
+        console.log("async1 start");
+        await async2();
+        console.log("async1 end");
+
+    }
+    async function async2() {
+        console.log('async2');
+    }
+    console.log("script start");
+    setTimeout(function () {
+        console.log("settimeout");
+    }, 0);
+    async1();
+    new Promise(function (resolve) {
+        console.log("promise1");
+        resolve();
+    }).then(function () {
+        console.log("promise2");
+    });
+    console.log('script end');
+}
+
 function c() {
     console.log('1');
     setTimeout(function () {
@@ -142,7 +166,7 @@ function e() {
     }).then(t => console.log(t));
     console.log(3);
 }
-e()
+_b()
 /**
  * macro-task(宏任务)：script(整体代码)、setTimeout、setInterval、I/O、事件、postMessage、 MessageChannel、setImmediate (Node.js)
  * micro-task(微任务)：Promise、MutaionObserver、process.nextTicks
