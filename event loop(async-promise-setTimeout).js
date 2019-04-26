@@ -111,10 +111,31 @@ function c() {
     })
 }
 
-a1();
+// C E D (undefined) A B
+function d() {
+    setTimeout(() => {
+        console.log('A');
+    }, 0);
+    var obj = {
+        func: function () {
+            setTimeout(function () {
+                console.log('B');
+            }, 0);
+            return new Promise(function (resolve) {
+                console.log('C');
+                resolve();
+            });
+        },
+    };
+    obj.func().then(function () {
+        console.log('D');
+    });
+    console.log('E');
+}
 
+d();
 /**
- * macro-task(宏任务)：包括整体代码script，setTimeout，setInterval
- * micro-task(微任务)：Promise，process.nextTick
+ * macro-task(宏任务)：script(整体代码)、setTimeout、setInterval、I/O、事件、postMessage、 MessageChannel、setImmediate (Node.js)
+ * micro-task(微任务)：Promise、MutaionObserver、process.nextTicks
  * promise.Trick() > promise的回调 > setTimeout > setImmediate
  */
